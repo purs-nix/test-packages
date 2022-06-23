@@ -2,5 +2,12 @@
   with ps-pkgs;
   { version = "override-test";
     dependencies = [ prelude ];
-    src = "effect/src";
+
+    install =
+      ''
+      mkdir $out
+      cd effect
+      cp -r src/. $out
+      cp -r other-src/. $out
+      '';
   }

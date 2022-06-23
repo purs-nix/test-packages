@@ -20,7 +20,7 @@
                    [ nodejs
                      nodePackages.bower
                      nodePackages.pulp
-                     (ps.command {})
+                     (ps.command { srcs = [ "src" "other-src" ]; })
                      purs-nix.esbuild
                      purs-nix.purescript
                      # purs-nix.purescript-language-server
