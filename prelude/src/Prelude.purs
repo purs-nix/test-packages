@@ -38,6 +38,7 @@ module Prelude
   , module Data.Show
   , module Data.Unit
   , module Data.Void
+  , module IsEven
   , override
   ) where
 
@@ -69,6 +70,8 @@ import Data.Semiring (class Semiring, add, mul, one, zero, (*), (+))
 import Data.Show (class Show, show)
 import Data.Unit (Unit, unit)
 import Data.Void (Void, absurd)
+
+import IsEven (isEven)
 
 override :: String
 override = "prelude override"

@@ -1,32 +1,19 @@
 { inputs =
-    { get-flake.url = "github:ursi/get-flake";
-      nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    { nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
       purs-nix.url = "github:ursi/purs-nix/ps-0.15";
       utils.url = "github:numtide/flake-utils";
     };
 
-  outputs = { get-flake, nixpkgs, utils, ... }@inputs:
+  outputs = { nixpkgs, utils, ... }@inputs:
     utils.lib.eachDefaultSystem
       (system:
          let
            pkgs = nixpkgs.legacyPackages.${system};
            purs-nix = inputs.purs-nix { inherit system; };
-
-           package =
-             import ./package.nix
-               { inherit get-flake system; }
-               purs-nix;
-
+           package = import ./package.nix purs-nix;
            ps = purs-nix.purs { inherit (package) dependencies; };
          in
-         { packages.default =
-             purs-nix.build
-               { name = "purs-nix.is-even";
-                 src.path = ../.;
-                 info = package;
-               };
-
-           devShell =
+         { devShell =
              pkgs.mkShell
                { packages =
                    with pkgs;
@@ -38,7 +25,7 @@
                         { bundle =
                             { esbuild.platform = "node";
                               main = false;
-                              module = "IsEven";
+                              module = "PursNixBuildTest";
                             };
                         }
                      )

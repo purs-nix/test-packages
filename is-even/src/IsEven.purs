@@ -1,3 +1,8 @@
-module IsEven where
+module IsEven (isEven) where
 
-foreign import isEven :: Int -> Boolean
+import IsOdd (isOdd)
+
+foreign import not :: Boolean -> Boolean
+
+isEven :: Int -> Boolean
+isEven n = not (isOdd n)
