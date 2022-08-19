@@ -11,7 +11,13 @@
            pkgs = nixpkgs.legacyPackages.${system};
            purs-nix = inputs.purs-nix { inherit system; };
            package = import ./package.nix purs-nix;
-           ps = purs-nix.purs { inherit (package) dependencies; };
+
+           ps =
+             purs-nix.purs
+               { inherit (package) dependencies;
+                 dir = ./.;
+                 srcs = [ "src" "other-src" ];
+               };
          in
          { devShell =
              pkgs.mkShell
@@ -20,10 +26,9 @@
                    [ nodejs
                      nodePackages.bower
                      nodePackages.pulp
-                     (ps.command { srcs = [ "src" "other-src" ]; })
+                     (ps.command {})
                      purs-nix.esbuild
                      purs-nix.purescript
-                     # purs-nix.purescript-language-server
                    ];
                };
          }
