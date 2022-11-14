@@ -1,7 +1,7 @@
 { inputs =
     { get-flake.url = "github:ursi/get-flake";
       nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-      purs-nix.url = "github:ursi/purs-nix/ps-0.15";
+      purs-nix.url = "github:ursi/purs-nix/new-api";
       utils.url = "github:numtide/flake-utils";
     };
 
@@ -10,11 +10,12 @@
       (system:
          let
            pkgs = nixpkgs.legacyPackages.${system};
+           is-odd = (get-flake ../is-odd).packages.${system}.default;
            purs-nix = inputs.purs-nix { inherit system; };
 
            package =
              import ./package.nix
-               { inherit get-flake system; }
+               { inherit get-flake is-odd system; }
                purs-nix;
 
            ps = purs-nix.purs { inherit (package) dependencies; };
@@ -45,7 +46,6 @@
 
                      purs-nix.esbuild
                      purs-nix.purescript
-                     # purs-nix.purescript-language-server
                    ];
                };
          }

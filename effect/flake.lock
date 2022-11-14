@@ -1,20 +1,5 @@
 {
   "nodes": {
-    "builders": {
-      "locked": {
-        "lastModified": 1646266317,
-        "narHash": "sha256-sO7lFbuhK2t13elpWgNB+Nyo40qQOUnX4FwJ+3Ao9ZE=",
-        "owner": "ursi",
-        "repo": "nix-builders",
-        "rev": "72e9cc5487b07d152e3f5f6ed0654bbc7086e6b4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ursi",
-        "repo": "nix-builders",
-        "type": "github"
-      }
-    },
     "deadnix": {
       "inputs": {
         "fenix": "fenix",
@@ -60,11 +45,11 @@
     "docs-search": {
       "flake": false,
       "locked": {
-        "lastModified": 1658376882,
-        "narHash": "sha256-GV42QnJn0q5d4v3m0qTBCSfvU3a7jnytSh3D3Ch656Y=",
+        "lastModified": 1661787609,
+        "narHash": "sha256-jgOl8PKisRmcaHOya3HzArI3eKjVErx+XIBGminh9Zk=",
         "owner": "purs-nix",
         "repo": "purescript-docs-search",
-        "rev": "8f3ea8cd24b7cf605ce80e040622f273801fc646",
+        "rev": "4620575e21886fcbf516d0b43910ba4ead2a60d0",
         "type": "github"
       },
       "original": {
@@ -421,6 +406,21 @@
         "type": "github"
       }
     },
+    "parsec": {
+      "locked": {
+        "lastModified": 1635533376,
+        "narHash": "sha256-/HrG0UPGnI5VdkhrNrpDiM2+nhdL6lD/bqyGtYv0QDE=",
+        "owner": "nprindle",
+        "repo": "nix-parsec",
+        "rev": "1bf25dd9c5de1257a1c67de3c81c96d05e8beb5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nprindle",
+        "repo": "nix-parsec",
+        "type": "github"
+      }
+    },
     "ps-tools": {
       "inputs": {
         "deadnix": "deadnix_2",
@@ -444,27 +444,27 @@
     },
     "purs-nix": {
       "inputs": {
-        "builders": "builders",
         "deadnix": "deadnix",
         "docs-search": "docs-search",
         "get-flake": "get-flake",
         "make-shell": "make-shell",
         "nixpkgs": "nixpkgs_5",
+        "parsec": "parsec",
         "ps-tools": "ps-tools",
         "statix": "statix",
         "utils": "utils_4"
       },
       "locked": {
-        "lastModified": 1660182633,
-        "narHash": "sha256-HTpd3eYpDfWTgGmgIGoa50McCm18XfRlzYU/MEcJMtU=",
+        "lastModified": 1668056711,
+        "narHash": "sha256-yepRp/egEmtsE5TH2MskdyRsDt/Q2QzMQ5K0MkfFYaY=",
         "owner": "ursi",
         "repo": "purs-nix",
-        "rev": "fbb66e1820255da5cfb0970b6fb702fc7f509c33",
+        "rev": "dc2ba9d37ff9ff8e08cc90e01ee433caa98b57d2",
         "type": "github"
       },
       "original": {
         "owner": "ursi",
-        "ref": "ps-0.15",
+        "ref": "new-api",
         "repo": "purs-nix",
         "type": "github"
       }

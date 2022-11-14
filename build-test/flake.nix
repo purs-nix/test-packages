@@ -1,6 +1,6 @@
 { inputs =
     { nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-      purs-nix.url = "github:ursi/purs-nix/ps-0.15";
+      purs-nix.url = "github:ursi/purs-nix/new-api";
       utils.url = "github:numtide/flake-utils";
     };
 
@@ -32,7 +32,6 @@
 
                      purs-nix.esbuild
                      purs-nix.purescript
-                     # purs-nix.purescript-language-server
                    ];
                };
          }

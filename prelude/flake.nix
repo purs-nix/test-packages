@@ -1,7 +1,8 @@
 { inputs =
     { get-flake.url = "github:ursi/get-flake";
       nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-      purs-nix.url = "github:ursi/purs-nix/ps-0.15";
+      ps-tools.follows = "purs-nix/ps-tools";
+      purs-nix.url = "github:ursi/purs-nix/new-api";
       utils.url = "github:numtide/flake-utils";
     };
 
@@ -9,9 +10,17 @@
     utils.lib.eachDefaultSystem
       (system:
          let
+           is-even = (get-flake ../is-even).packages.${pkgs.system}.default;
            pkgs = nixpkgs.legacyPackages.${system};
-           purs-nix = inputs.purs-nix { inherit system; };
-           package = import ./package.nix { inherit get-flake pkgs; } purs-nix;
+           ps-tools = inputs.ps-tools.legacyPackages.${system};
+
+           purs-nix =
+             inputs.purs-nix
+               { inherit system;
+                 overlays = [ is-even.overlay ];
+               };
+
+           package = import ./package.nix { inherit get-flake is-even pkgs; } purs-nix;
            ps = purs-nix.purs { inherit (package) dependencies; };
          in
          { packages.default =
@@ -31,7 +40,7 @@
                      (ps.command {})
                      purs-nix.esbuild
                      purs-nix.purescript
-                     purs-nix.purescript-language-server
+                     ps-tools.for-0_15.purescript-language-server
                    ];
                };
          }

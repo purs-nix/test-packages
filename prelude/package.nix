@@ -1,7 +1,7 @@
-{ get-flake, pkgs }:
+{ get-flake, is-even, pkgs }:
 { build, ps-pkgs, ... }:
   with ps-pkgs;
   { version = "override-test";
-    dependencies = [(get-flake ../is-even).packages.${pkgs.system}.default ];
+    dependencies = [ is-even ];
     src = "prelude/src";
   }

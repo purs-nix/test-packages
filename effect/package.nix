@@ -1,7 +1,7 @@
 { ps-pkgs, ... }:
   with ps-pkgs;
   { version = "override-test";
-    dependencies = [ prelude ];
+    dependencies = [ "prelude" ];
 
     install =
       ''
